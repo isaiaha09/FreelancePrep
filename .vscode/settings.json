@@ -1,0 +1,24 @@
+
+{
+    "terminal.integrated.profiles.windows": {
+        "Visual Studio 2022 x64": {
+            "path": "C:\\Windows\\System32\\cmd.exe",
+            "args": [
+                "/k",
+                "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Auxiliary\\Build\\vcvars64.bat"
+            ]
+        },
+        "Visual Studio 2026 x64": {
+            "path": "C:\\Windows\\System32\\cmd.exe",
+            "args": [
+                "/k",
+                "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Auxiliary\\Build\\vcvars64.bat"
+            ]
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "Visual Studio 2022 x64",
+    "swift.buildArguments": [
+        "--build-system",
+        "native"
+    ]
+}
