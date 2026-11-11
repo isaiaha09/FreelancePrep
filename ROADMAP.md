@@ -8,21 +8,24 @@
 - [x] Configure Swift development on Windows.
 - [x] Verify `swift build`.
 - [x] Verify `swift test` using the native SwiftPM backend.
-- [ ] Establish project documentation.
+- [x] Establish project documentation.
 - [ ] Confirm Git repository and branching workflow.
 
 **Completion criteria:** The core package builds and tests successfully, and development instructions are documented.
 
 ### Phase 1 — Core Data Models
 
-- [ ] Create project model.
-- [ ] Create estimate model.
-- [ ] Create expense model.
-- [ ] Create time-entry model.
-- [ ] Define validation rules.
-- [ ] Write model tests.
+- [x] Create project model.
+- [x] Create estimate model.
+- [x] Create expense model.
+- [x] Create time-entry model.
+- [x] Define validation rules.
+- [x] Write model tests.
+- [ ] Verify the integrated models with Windows `swift build` and `swift test`.
 
 **Completion criteria:** Models represent the required project information and pass unit tests.
+
+**Current state:** Model implementations, validation rules, and test files are present. Package validation remains pending because the current build and test commands cannot launch the Swift frontend.
 
 ### Phase 2 — Financial Calculations
 
@@ -105,7 +108,7 @@
 
 ## Development Priorities
 
-Current priority: Phase 0, followed by Phase 1.
+Current priority: Verify Phase 1 on Windows, then proceed to Phase 2.
 
 Do not begin later phases without checking prerequisites and dependencies.
 

@@ -4,45 +4,38 @@
 
 Project: FreelancePrep
 
-Current phase: Phase 0 — Development Foundation
+Current phase: Phase 1 — Core Data Models
 
-Overall status: Initial Swift development environment operational.
+Overall status: Phase 1 models, validation rules, and test sources are integrated in the current `dev` checkout. Completion is pending successful package validation.
 
 ## Verified Accomplishments
 
 - Swift 6.4.2 installed on Windows.
 - Swift Package Manager project initialized.
-- Native SwiftPM backend successfully builds the package.
-- `swift test` successfully executes.
+- The initial SwiftPM package previously built and tested successfully on Windows.
 - FreelancePrepCore package established.
+- Phase 1 project, estimate, expense, and time-entry models are present.
+- Model implementations were inspected against the approved contracts and match their field, immutability, validation, `Decimal` precision, event-date, and project-reference requirements.
+- Tests cover model validation, value preservation, IDs, optional estimates, and unverified project references.
+- Approved model contracts are documented in `ARCHITECTURE.md`.
 
 ## Current Development Focus
 
-Establishing the documentation and agent-driven development workflow before implementing the main application features.
+Verify the integrated Phase 1 models with the Windows Swift toolchain, then proceed to Phase 2 financial calculations.
 
 ## In Progress
 
-- Defining architecture and development rules.
-- Organizing the feature roadmap.
-- Preparing Git branches and worktrees for future agent tasks.
+- Run package build and test validation after resolving the Swift frontend launch failure.
+- Confirm the intended integration branch: this checkout is `dev`, where the two Phase 1 feature merges appear; local `main` still points to the initial commit.
 
 ## Known Issues
 
-No active build or test failures reported.
-
-Additional application-level issues have not yet been evaluated.
+- `swift build --build-system native` and `swift test --build-system native` both fail before compilation because `swift-frontend.exe` returns “permission denied” while SwiftPM requests target information. The test suite did not execute.
+- Phase 1 acceptance is therefore not verified, despite the model and test sources being present.
 
 ## Next Recommended Task
 
-Implement the first core data model and its associated tests.
-
-Suggested initial scope:
-
-- Freelance project identifier
-- Project name
-- Estimated revenue
-- Estimated hours
-- Input validation
+Run `swift build` and `swift test` in an environment where the Swift frontend can launch. Mark Phase 1 complete only after both commands and the model tests pass. Confirm the intended branch integration before treating the changes as available on `main`.
 
 ## Recent Decisions
 
@@ -51,20 +44,20 @@ Suggested initial scope:
 - SwiftUI is planned for the native iOS interface.
 - Core logic must remain testable on Windows.
 - The application is intended to work offline.
+- Phase 1 models are immutable public value types with throwing initializers and typed `ModelValidationError` cases.
+- `Decimal` values are preserved without initialization-time rounding.
+- Expense and time-entry dates describe the associated event, not record creation.
+- Services or persistence components own project-reference validation.
 
 ## Agent Handoff Notes
 
 Before beginning the next task:
 
 1. Read the architecture and roadmap.
-2. Inspect the existing project files.
-3. Confirm the working tree is clean or identify existing changes.
-4. Implement the assigned task.
-5. Run build and tests.
-6. Update this status file with verified results.
+2. Inspect the current source, tests, branch, and working tree.
+3. Resolve package validation in an environment where SwiftPM can launch the Swift frontend.
+4. Update status only with verified results.
 
 ## Last Updated
 
-2026-11-09
-
-Update this date when meaningful project progress is recorded.
+2026-11-10
