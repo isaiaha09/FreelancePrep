@@ -69,6 +69,41 @@ Represent application data, including:
 - Expenses
 - Project financial summaries
 
+### Approved Phase 1 Model Contracts
+
+Phase 1 uses immutable public value types. `Project`, `Expense`, and `TimeEntry`
+conform to `Identifiable` and `Equatable`; `ProjectEstimate` conforms to
+`Equatable`. Their initializers throw `ModelValidationError`. Record IDs default
+to a new `UUID` and preserve a supplied ID.
+
+- `Project` contains `id: UUID`, `name: String`, `currencyCode: String`, and an
+  optional complete `estimate: ProjectEstimate`.
+- `ProjectEstimate` contains `estimatedRevenue: Decimal` and
+  `estimatedHours: Decimal`.
+- `Expense` contains `id: UUID`, `projectID: UUID`, `description: String`,
+  `amount: Decimal`, and `incurredAt: Date`.
+- `TimeEntry` contains `id: UUID`, `projectID: UUID`,
+  `hoursWorked: Decimal`, and `workedAt: Date`.
+
+`ModelValidationError` defines `emptyProjectName`, `invalidCurrencyCode`,
+`negativeEstimatedRevenue`, `nonPositiveEstimatedHours`,
+`emptyExpenseDescription`, `nonPositiveExpenseAmount`, and
+`nonPositiveTimeEntryHours`.
+
+Validation trims project names and expense descriptions, then rejects values
+that are empty. Currency codes must contain exactly three uppercase ASCII
+letters; this checks format only, not membership in an ISO currency registry.
+Estimated revenue may be zero but not negative. Estimated hours, expense
+amounts, and work hours must be greater than zero. `Decimal` values are
+preserved without rounding during initialization.
+
+`incurredAt` and `workedAt` are required dates/times associated with the expense
+or work entry, not creation timestamps; the supplied `Date` is preserved.
+`Expense` and `TimeEntry` accept a `projectID` without checking that a project
+exists. Future services or persistence components are responsible for
+referential-integrity checks. These model contracts do not add SwiftUI,
+persistence, external dependencies, or financial calculation services.
+
 ### Services
 
 Coordinate application operations, including:
